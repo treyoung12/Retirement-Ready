@@ -25,6 +25,7 @@ def user_InputMaster(name, age, salary, balance, SSN, email):
         master_lst.append(info)
 
 
+# function to check through master list and put each user in the correct list
 def retirement_check(listOfCustomers):
     counter = 0
 
@@ -40,28 +41,20 @@ def retirement_check(listOfCustomers):
             retired = subsetData.copy()
             retirement_ready.append(retired)
 
-            print(retirement_ready)
-
         elif ageCheck <= 59.5 and balanceCheck > salaryCheck*25:
             print("User " + str(counter+1) + " is not of age to retire.")
             tooYoung = subsetData.copy()
             not_old_enough.append(tooYoung)
-
-            print(not_old_enough)
 
         elif ageCheck >= 59.5 and balanceCheck < salaryCheck*25:
             print("User " + str(counter+1) + " does not have the recommended balance in their 401k to retire.")
             broke = subsetData.copy()
             not_enough_money.append(broke)
 
-            print(not_enough_money)
-
         else:
             print("User " + str(counter+1) + " does not meet any requirements to retire.")
             noChance = subsetData.copy()
             no_requirement_met.append(noChance)
-
-            print(no_requirement_met)
 
         counter += 1
 
@@ -90,7 +83,13 @@ if __name__ == '__main__':
 
         if count - 1 == inputCustomerNum:
             break
+    retirement_check(master_lst)
+
     # print the master list of all users inputted
     print("Here is a full list of all users: \n" + str(master_lst))
+    print("Here is a full list of all the users ready to retire: \n" + str(retirement_ready))
+    print("Here is a full list of all the users who do not meet the age requirement: \n" + str(not_old_enough))
+    print("Here is a full list of all the users who do not meet the financial requirement: \n" + str(not_enough_money))
+    print("Here is a full list of all the users who meet neither requirement: \n" + str(no_requirement_met))
 
-    retirement_check(master_lst)
+
